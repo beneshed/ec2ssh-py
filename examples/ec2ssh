@@ -1,0 +1,13 @@
+[EC2SSH]
+profiles = default
+regions = us-east-1
+filters = instance-state-name,running
+anti_filters = #
+
+[TEMPLATE]
+template = Host {{ Tags['Name'] }}
+		HostName {{ PrivateDnsName or PrivateIpAddress }}
+    User username
+    IdentityFile ~/.ssh/id_rsa
+    AddKeysToAgent yes
+    IdentitiesOnly yes
